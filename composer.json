@@ -1,0 +1,19 @@
+{
+    "name": "pickle/blog-bundle",
+    "type": "symfony-bundle",
+    "description": "Simple blog bundle for Symfony2",
+    "keywords": ["blog","blogging", "symfony", "symfony2"],
+    "homepage": "https://github.com/pierswarmers/PickleBlogBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Piers Warmers",
+            "email": "hello@pierswarmers.com",
+            "homepage": "http://pierswarmers.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
