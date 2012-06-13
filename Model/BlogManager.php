@@ -102,9 +102,8 @@ class BlogManager
 
         $query = $this->getEntityRepository()->createQueryBuilder('b')
             ->where('b.status = :status')
-            ->setParameter('status', $className::STATUS_PUBLISHED)
-            ->orderBy('b.:order_by', $options['order_by_order'])
-            ->setParameter('order_by', $options['order_by'])
+            ->setParameter('status', $options['status'])
+            ->orderBy('b.' . $options['order_by'], $options['order_by_order'])
             ->getQuery();
 
         return new Paginator($query, true);
@@ -128,7 +127,7 @@ class BlogManager
             'status'          => $className::STATUS_PUBLISHED,
             'max_results'     => $this->maxResults,
             'first_result'    => 0,
-            'order_by'        => 'created_at',
+            'order_by'        => 'createdAt',
             'order_by_order'  => 'ASC',
         ));
 
