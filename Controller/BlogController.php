@@ -45,6 +45,6 @@ class BlogController extends Controller
      * @return BlogManager
      */
     private function getManager() {
-        return $this->get('pickle.blog.manager');
+        return $this->get('pickle_blog.manager');
     }
 }
