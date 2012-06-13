@@ -13,8 +13,8 @@
 
         <service id="pickle_blog.manager" class="%pickle_blog.manager.class%">
             <argument type="service" id="doctrine.orm.entity_manager"/>
-            <argument>%pickle_blog_entity_class%</argument>
-            <argument>%pickle_blog_max_results%</argument>
+            <argument>%blog_entity_class%</argument>
+            <argument>%blog_max_results%</argument>
         </service>
 
     </services>

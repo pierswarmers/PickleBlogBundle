@@ -38,7 +38,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue(10)
                 ->end()
                 ->scalarNode('entity_class')
-                    ->defaultValue('Pickle\BlogBundle\Entity\Blog')
+                    ->defaultValue('PickleBlogBundle:Blog')
                 ->end()
             ->end()
         ;

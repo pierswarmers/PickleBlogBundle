@@ -18,8 +18,22 @@ namespace Pickle\Bundle\BlogBundle\Model;
  *
  * @author Piers Warmers hello@pierswarmers.com
  */
-interface BlogInterface extends \Serializable
+interface BlogInterface
 {
+    /**
+     * Sets the ID.
+     *
+     * @param string $id
+     */
+    function setId($id);
+
+    /**
+     * Gets ID.
+     *
+     * @param string
+     */
+    function getId();
+
     /**
      * Sets the GUID.
      *

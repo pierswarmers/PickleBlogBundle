@@ -59,7 +59,7 @@ class BlogManager
 
         if (!$entityRepository instanceof BlogRepositoryInterface) {
             throw new InvalidArgumentException(
-                sprintf('%s must implement BlogRepositoryInterface', $entityRepository)
+                sprintf('%s must implement BlogRepositoryInterface', get_class($entityRepository))
             );
         }
 
@@ -98,9 +98,11 @@ class BlogManager
     {
         $options = $this->resolveFindAllBlogsOptions($options);
 
+        $className = $this->getEntityRepository()->getClassName();
+
         $query = $this->getEntityRepository()->createQueryBuilder('b')
             ->where('b.status = :status')
-            ->setParameter('status', $this->getEntityRepository()->getClassName()::STATUS_PUBLISHED)
+            ->setParameter('status', $className::STATUS_PUBLISHED)
             ->orderBy('b.:order_by', $options['order_by_order'])
             ->setParameter('order_by', $options['order_by'])
             ->getQuery();
@@ -120,8 +122,10 @@ class BlogManager
     {
         $resolver = new OptionsResolver();
 
+        $className = $this->getEntityRepository()->getClassName();
+
         $resolver->setDefaults(array(
-            'status'          => $this->getEntityRepository()->getClassName()::STATUS_PUBLISHED,
+            'status'          => $className::STATUS_PUBLISHED,
             'max_results'     => $this->maxResults,
             'first_result'    => 0,
             'order_by'        => 'created_at',
@@ -136,10 +140,12 @@ class BlogManager
             'order_by'     => 'string',
         ));
 
+        $options = $resolver->resolve($options);
+
         if ($options['max_results'] > $safeLimit = 100) {
             throw new InvalidOptionsException(sprintf('"max_results" option has exceeded safe limit of %s.', $safeLimit));
         }
 
-        return $resolver->resolve($options);
+        return $options;
     }
 }

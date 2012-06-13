@@ -4,6 +4,7 @@ namespace Pickle\Bundle\BlogBundle\Model;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManager;
+use Pickle\Bundle\BlogBundle\Model\BlogInterface;
 
 /**
  * Pickle\Bundle\BlogBundle\Model\BlogRepository
@@ -12,7 +13,7 @@ use Doctrine\ORM\EntityManager;
  *
  * @author Piers Warmers hello@pierswarmers.com
  */
-class BlogRepository extends EntityRepository
+class BlogRepository extends EntityRepository implements BlogRepositoryInterface
 {
 
 }

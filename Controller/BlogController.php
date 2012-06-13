@@ -31,7 +31,7 @@ class BlogController extends Controller
      *
      * @return array Template variables
      *
-     * @Route("/blog", name="blog_list")
+     * @Route("/", name="blog_list")
      * @Template()
      */
     public function indexAction(Request $request)

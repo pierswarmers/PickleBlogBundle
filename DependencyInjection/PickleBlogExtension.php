@@ -33,5 +33,8 @@ class PickleBlogExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter('blog_max_results', $config['max_results']);
+        $container->setParameter('blog_entity_class', $config['entity_class']);
     }
 }
