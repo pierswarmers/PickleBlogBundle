@@ -21,20 +21,6 @@ namespace Pickle\Bundle\BlogBundle\Model;
 interface BlogInterface
 {
     /**
-     * Sets the ID.
-     *
-     * @param string $id
-     */
-    function setId($id);
-
-    /**
-     * Gets ID.
-     *
-     * @param string
-     */
-    function getId();
-
-    /**
      * Sets the GUID.
      *
      * @param string $guid
