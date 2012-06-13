@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * This class loads bundles configuration.
  *
- * @author Piers Warmers hello@pierswarmers.com
+ * @author Piers Warmers <hello@pierswarmers.com>
  */
 class PickleBlogExtension extends Extension
 {
