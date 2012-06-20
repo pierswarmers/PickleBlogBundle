@@ -23,6 +23,7 @@ use Pickle\Bundle\BlogBundle\Model\BlogInterface;
  *
  * @ORM\Entity(repositoryClass="Pickle\Bundle\BlogBundle\Model\BlogRepository")
  * @ORM\Table(name="pickle_blog")
+ * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity(fields="guid", message="This GUID is already taken")
  */
 class Blog extends AbstractBlog
@@ -48,7 +49,7 @@ class Blog extends AbstractBlog
     /**
      * @var string $author
      *
-     * @ORM\Column(name="author", type="string", length=150)
+     * @ORM\Column(name="author", type="string", length=150, nullable=true)
      */
     private $author;
 
@@ -69,44 +70,68 @@ class Blog extends AbstractBlog
     /**
      * @var string $content
      *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="content", type="text", nullable=true)
      */
     private $content;
 
     /**
      * @var string $contentFilter
      *
-     * @ORM\Column(name="contentFilter", type="string", length=30)
+     * @ORM\Column(name="contentFilter", type="string", length=30, nullable=true)
      */
     private $contentFilter;
 
     /**
      * @var string $title
      *
-     * @ORM\Column(name="title", type="string", length=30)
+     * @ORM\Column(name="title", type="string", length=100)
+     *
+     * @Assert\NotBlank()
+     * @Assert\MinLength(2)
+     * @Assert\MaxLength(100)
      */
     private $title;
 
     /**
      * @var string $excerpt
      *
-     * @ORM\Column(name="excerpt", type="text")
+     * @ORM\Column(name="excerpt", type="text", nullable=true)
      */
     private $excerpt;
 
     /**
      * @var string $status
      *
-     * @ORM\Column(name="status", type="string", length=20)
+     * @ORM\Column(name="status", type="string", length=20, nullable=true)
      */
     private $status;
 
     /**
      * @var string $commentStatus
      *
-     * @ORM\Column(name="comment_status", type="string", length=20)
+     * @ORM\Column(name="comment_status", type="string", length=20, nullable=true)
      */
     private $commentStatus;
+
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function setPreUpdate()
+    {
+
+        if (!$this->guid) {
+            $this->setGuid(sha1(uniqid(rand(0,999999).microtime())));
+        }
+
+        $this->setUpdatedAt(new \DateTime());
+    }
 
     /**
      * @param int $id

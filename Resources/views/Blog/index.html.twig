@@ -2,12 +2,41 @@
 
 {% block title %}
 
-    I'm a post!
+    The Pickle Blog
 
 {% endblock title %}
 
 {% block body %}
 
-    <h1>I'm a post - here is my content...</h1>
+    {% for blog in blogs %}
+    <article>
+
+        <header>
+            <h2>{{ blog.title }}</h2>
+        </header>
+
+        {% if blog.excerpt %}
+        <aside>
+            {{ blog.excerpt }}
+        </aside>
+        {% endif %}
+
+        <div class="content">
+            <p>{{ blog.content(500) }}</p>
+        </div>
+
+        <footer>
+            <time datetime="{{ blog.createdAt|date('c') }}">{{ blog.createdAt|date('l, F j, Y') }}</time>
+        </footer>
+
+    </article>
+
+    {% else %}
+
+        <h1>Sorry…</h1>
+
+        <p>Nothing to show yet!</p>
+
+    {% endfor %}
 
 {% endblock body %}

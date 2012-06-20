@@ -3,8 +3,26 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Pickle Blog{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/pickleblog/css/screen.css') }}" />
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
     </head>
     <body>
-    {% block body %}{% endblock %}
+        <header role="banner" class="group">
+            <a href="{{ path('homepage') }}" id="logo">
+                Pickle <em><span>a simple blog</span> built with Symfony</em>
+            </a>
+        </header>
+        <div id="main" role="main">
+            <div id="container">
+                <div id="content" role="main">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <footer role="contentinfo">
+            <p>Copyright © Nobody… no rights reserved… this is free, yo!</p>
+        </footer>
     </body>
 </html>
