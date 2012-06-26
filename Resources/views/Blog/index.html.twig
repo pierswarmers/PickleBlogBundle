@@ -12,21 +12,24 @@
     <article>
 
         <header>
-            <h2>{{ blog.title }}</h2>
+            <h2 property="title" contenteditable="true">{{ blog.title }}</h2>
         </header>
 
         {% if blog.excerpt %}
-        <aside>
-            {{ blog.excerpt }}
+        <aside property="aside" contenteditable="true">
+            {{ blog.excerpt|raw }}
         </aside>
         {% endif %}
 
-        <div class="content">
-            <p>{{ blog.content(500) }}</p>
+        <div class="content" property="content" contenteditable="true">
+            {{ blog.content(500)|raw }}
         </div>
 
         <footer>
-            <time datetime="{{ blog.createdAt|date('c') }}">{{ blog.createdAt|date('l, F j, Y') }}</time>
+            Posted <time datetime="{{ blog.createdAt|date('c') }}">{{ blog.createdAt|date('F j, Y') }}</time>
+            {% if blog.author %}
+                by <span property="author" contenteditable="true">{{ blog.author }}</span>
+            {% endif %}
         </footer>
 
     </article>

@@ -38,6 +38,12 @@ class Blog extends AbstractBlog
     private $id;
 
     const STATUS_PUBLISHED = 'published';
+    const STATUS_REVIEW    = 'review';
+    const STATUS_DRAFT     = 'draft';
+
+    const COMMENT_STATUS_ALL   = 'all';
+    const COMMENT_STATUS_USERS = 'users';
+    const COMMENT_STATUS_NONE  = 'none';
 
     /**
      * @var string $guid
