@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Pickle\Bundle\BlogBundle\Entity\Post">
+
+        <field name="guid" column="guid" type="string" length="255" unique="true" />
+
+        <field name="status" column="status" type="string" length="30" />
+
+        <field name="title" column="title" type="string" length="255" />
+
+        <field name="slug" column="slug" type="string">
+            <gedmo:slug unique="true" style="camel" updatable="false" separator="_" fields="title" />
+        </field>
+
+        <field name="createdAt" column="created_at" type="datetime">
+            <gedmo:timestampable on="create"/>
+        </field>
+
+        <field name="updatedAt" column="updated_at" type="datetime" nullable="true">
+            <gedmo:timestampable on="update"/>
+        </field>
+
+        <field name="content" column="content" type="text" />
+
+    </mapped-superclass>
+
+</doctrine-mapping>
