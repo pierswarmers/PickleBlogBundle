@@ -15,7 +15,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "pickle/admin-bundle": "dev-master"
+        "pickle/admin-bundle": "dev-master",
+        "pickle/core-bundle": "dev-master"
     },
     "autoload": {
         "psr-0": { "Pickle\\Bundle\\Blog": "" }
