@@ -5,7 +5,7 @@
  *
  * (c) Piers Warmers hello@pierswarmers.com
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please views the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -34,7 +34,8 @@ class PickleBlogExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('blog_max_results', $config['max_results']);
-        $container->setParameter('blog_entity_class', $config['entity_class']);
+        $classes = $config['classes'];
+
+        $container->setParameter('blog_entity_class', $config['classes']['model']['post']);
     }
 }

@@ -5,7 +5,7 @@
  *
  * (c) Piers Warmers hello@pierswarmers.com
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please views the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -39,21 +39,15 @@ class BlogManager
     private $entityRepository;
 
     /**
-     * @var int
-     */
-    private $maxResults;
-
-    /**
      * @param EntityManager $entityManager
      * @param string        $entityName
      * @param int           $maxResults
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(EntityManager $entityManager, $entityName, $maxResults)
+    public function __construct(EntityManager $entityManager, $entityName)
     {
         $this->entityManager = $entityManager;
-        $this->maxResults = $maxResults;
 
         $entityRepository = $this->entityManager->getRepository($entityName);
 
@@ -125,7 +119,7 @@ class BlogManager
 
         $resolver->setDefaults(array(
             'status'          => $className::STATUS_PUBLISHED,
-            'max_results'     => $this->maxResults,
+            'max_results'     => 10,
             'first_result'    => 0,
             'order_by'        => 'createdAt',
             'order_by_order'  => 'ASC',

@@ -17,34 +17,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Pickle\Bundle\BlogBundle\Model\BlogManager;
-/**
- * @Route("/blog")
- *
- */
-class BlogController extends Controller
-{
-    /**
-     * This action handles the blog list.
-     *
-     * @param Request $request
-     *
-     * @return array Template variables
-     *
-     * @Route("/", name="blog_list")
-     * @Template()
-     */
-    public function indexAction(Request $request)
-    {
-        return array('blogs' => $this->getManager()->findAllBlogs());
-    }
+use Pickle\Bundle\BlogBundle\Model\PostManager;
 
-    /**
-     * Get the BlogManager object service.
-     *
-     * @return BlogManager
-     */
-    private function getManager() {
-        return $this->get('pickle_blog.manager');
+
+class PostController extends Controller
+{
+    public function listAction(Request $request)
+    {
+        return $this->renderView('PickleBlogBundle:Frontend/Post/list.html.twig');
     }
 }

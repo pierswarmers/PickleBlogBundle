@@ -5,7 +5,7 @@
  *
  * (c) Piers Warmers hello@pierswarmers.com
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please views the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -34,15 +34,22 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('max_results')
-                    ->defaultValue(10)
+                ->scalarNode('driver')->isRequired()->end()
+                ->scalarNode('engine')->defaultValue('twig')->end()
+                ->arrayNode('classes')
+                    ->isRequired()
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('model')
+                            ->isRequired()
+                            ->children()
+                                ->scalarNode('post')->isRequired()->cannotBeEmpty()
+                            ->end()
+                        ->end()
+                    ->end()
                 ->end()
-                ->scalarNode('entity_class')
-                    ->defaultValue('PickleBlogBundle:Blog')
-                ->end()
-            ->end()
-        ;
-
+            ->end();
+//                    ->defaultValue('PickleBlogBundle:Blog')
         return $treeBuilder;
     }
 }
